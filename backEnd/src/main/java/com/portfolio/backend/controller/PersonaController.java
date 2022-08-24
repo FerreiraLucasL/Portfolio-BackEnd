@@ -24,14 +24,13 @@ public class PersonaController {
         return iPersonaServ.getPersona();
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
+    
     @PostMapping("/persona/create")
     public String createPersona(@RequestBody Persona persona){
         iPersonaServ.savePersona(persona);
         return "persona creada con exito";
     }       
     
-    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/persona/edite")
     public Persona editPersona(@PathVariable Long id,
                                 @RequestParam("nombreApellido") String nuevoNombreApellido,

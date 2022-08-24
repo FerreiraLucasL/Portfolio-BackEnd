@@ -1,5 +1,6 @@
-package com.portfolio.backend.controller;
+package com.portfolio.backend.security.controller;
 
+import com.portfolio.backend.controller.Mensaje;
 import com.portfolio.backend.security.dto.JwtDto;
 import com.portfolio.backend.security.dto.LoginUsuario;
 import com.portfolio.backend.security.dto.NuevoUsuario;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
     @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
@@ -64,8 +66,8 @@ public class AuthController {
         usuarioService.save(usuario);
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
-    
-    @PostMapping ("/login")
+
+    @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity(new Mensaje("verifique los datos ingresados"), HttpStatus.BAD_REQUEST);
@@ -83,7 +85,7 @@ public class AuthController {
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
 
         return new ResponseEntity(jwtDto, HttpStatus.OK);
-        
+
     }
 
 }
