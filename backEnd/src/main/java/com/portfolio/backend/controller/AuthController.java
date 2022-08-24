@@ -22,7 +22,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
 public class AuthController {
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -51,7 +49,7 @@ public class AuthController {
         if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario())) {
             return new ResponseEntity(new Mensaje("el nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
         }
-        if (usuarioService.existsByemail(nuevoUsuario.getEmail())) {
+        if (usuarioService.existsByEmail(nuevoUsuario.getEmail())) {
             return new ResponseEntity(new Mensaje("ya existe un usuario con ese correo"), HttpStatus.BAD_REQUEST);
         }
         Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
@@ -60,12 +58,13 @@ public class AuthController {
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
 
         if (nuevoUsuario.getRoles().contains("admin")) {
-            roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
         }
         usuario.setRoles(roles);
         usuarioService.save(usuario);
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
+    
     @PostMapping ("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -84,7 +83,7 @@ public class AuthController {
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
 
         return new ResponseEntity(jwtDto, HttpStatus.OK);
-
+        
     }
 
 }

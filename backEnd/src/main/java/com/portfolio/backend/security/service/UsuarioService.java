@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class UsuarioService {
-    @Autowired
-    iUsuarioRepo iusuarioRepo;
+    @Autowired iUsuarioRepo iusuarioRepo;
     
     public Optional<Usuario> getByNombreUsuario(String nombreUsuario){
         return iusuarioRepo.findByNombreUsuario(nombreUsuario);
@@ -22,7 +21,7 @@ public class UsuarioService {
         return iusuarioRepo.existsByNombreUsuario(nombreUsuario);
     }
     
-    public boolean existsByemail(String email){
+    public boolean existsByEmail(String email){
         return iusuarioRepo.existsByEmail(email);
     }
     

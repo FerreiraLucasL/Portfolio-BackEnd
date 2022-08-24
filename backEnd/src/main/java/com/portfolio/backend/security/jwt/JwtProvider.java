@@ -7,7 +7,6 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.SignatureException;
-
 import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
