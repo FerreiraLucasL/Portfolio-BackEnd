@@ -24,9 +24,9 @@ public class Persona {
     public Persona() {
     }    
     
-    public Persona(String nombreApellido, String Cargo, String lugarNacimiento, String fechaNacimiento, String img) {
+    public Persona(String nombreApellido, String cargo, String lugarNacimiento, String fechaNacimiento, String img) {
         this.nombreApellido = nombreApellido;
-        this.cargo = Cargo;
+        this.cargo = cargo;
         this.lugarNacimiento = lugarNacimiento;
         this.fechaNacimiento = fechaNacimiento;
         this.img = img;
