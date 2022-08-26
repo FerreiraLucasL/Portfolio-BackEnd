@@ -52,7 +52,7 @@ public class MainSecurity {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**")
+                .antMatchers("**")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
