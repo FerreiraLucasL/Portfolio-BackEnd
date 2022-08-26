@@ -43,7 +43,7 @@ public class AuthController {
     @Autowired
     RolService rolService;
     @Autowired
-    JwtProvider jwtProvider;
+    //JwtProvider jwtProvider;
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult) {
