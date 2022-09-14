@@ -39,7 +39,8 @@ public class PersonaController {
                                 @RequestParam("cargo") String nuevoCargo,
                                 @RequestParam("lugarNacimiento") String nuevoLugarNac,
                                 @RequestParam("fechaNacimiento") String nuevoFechaNac,
-                                @RequestParam("img")String nuevoImg){
+                                @RequestParam("img")String nuevoImg,
+                                @RequestParam("acerca")String nuevoAcerca){
         Persona persona = iPersonaServ.findPersona(id);
         
         persona.setNombreApellido(nuevoNombreApellido);

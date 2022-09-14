@@ -39,13 +39,13 @@ public class EducacionController {
                                            @RequestParam("educacionNombre")String eduNom,
                                            @RequestParam("educacionLugar")String eduLug,
                                            @RequestParam("educacionTiempo")String eduTie,
-                                           @RequestParam("educacionAños")String eduAños){
+                                           @RequestParam("educacionAnios")String eduAnios){
         Educacion edu = ieducacionServ.findEducacion(id);
         
         edu.setEducacionNombre(eduNom);
         edu.setEducacionLugar(eduLug);
         edu.setEducacionTiempo(eduTie);
-        edu.setEducacionAños(eduAños);
+        edu.setEducacionAnios(eduAnios);
         
         ieducacionServ.saveEducacion(edu);
         return edu;

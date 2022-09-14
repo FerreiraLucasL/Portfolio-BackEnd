@@ -42,13 +42,13 @@ public class ExperienciaController {
                                            @RequestParam("experienciaNombre")String expNom,
                                            @RequestParam("experienciaLugar")String expLug,
                                            @RequestParam("experienciaTiempo")String expTie,
-                                           @RequestParam("experienciaAños")String expAños){
+                                           @RequestParam("experienciaAnios")String expAnios){
         Experiencia exp = iexperienciaServ.findExperiencia(id);
         
         exp.setExperienciaNombre(expNom);
         exp.setExperienciaLugar(expLug);
         exp.setExperienciaTiempo(expTie);
-        exp.setExperienciaAños(expAños);
+        exp.setExperienciaAnios(expAnios);
         
         iexperienciaServ.saveExperiencia(exp);
         return exp;

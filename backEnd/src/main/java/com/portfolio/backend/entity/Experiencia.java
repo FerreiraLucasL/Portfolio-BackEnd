@@ -22,7 +22,7 @@ public class Experiencia {
     @NotNull
     private String experienciaTiempo;
     @NotNull
-    private String experienciaAños;
+    private String experienciaAnios;
     
     
     

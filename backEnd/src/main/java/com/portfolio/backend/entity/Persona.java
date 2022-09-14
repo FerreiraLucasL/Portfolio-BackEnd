@@ -20,17 +20,21 @@ public class Persona {
     private String lugarNacimiento;
     private String fechaNacimiento;
     private String img;
+    private String acerca;
 
     public Persona() {
     }    
-    
-    public Persona(String nombreApellido, String cargo, String lugarNacimiento, String fechaNacimiento, String img) {
+
+    public Persona(String nombreApellido, String cargo, String lugarNacimiento, String fechaNacimiento, String img, String acerca) {
         this.nombreApellido = nombreApellido;
         this.cargo = cargo;
         this.lugarNacimiento = lugarNacimiento;
         this.fechaNacimiento = fechaNacimiento;
         this.img = img;
+        this.acerca = acerca;
     }
+    
+    
     
     
 }
