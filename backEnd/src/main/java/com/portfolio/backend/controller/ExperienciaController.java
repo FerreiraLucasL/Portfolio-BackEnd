@@ -5,6 +5,8 @@ import com.portfolio.backend.entity.Experiencia;
 import com.portfolio.backend.interfaces.IExperienciaServ;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +23,12 @@ public class ExperienciaController {
     
     @GetMapping("/experiencia/get")
     @CrossOrigin(origins = "http://localhost:4200")
-    public List<Experiencia> getExperiencia(){
-        return iexperienciaServ.getExperiencia();
+    public ResponseEntity<List<Experiencia>> getExperiencia(){
+        List<Experiencia> experiencias=iexperienciaServ.getExperiencia();
+        return new ResponseEntity<>(experiencias, HttpStatus.OK);
+    
     }
+    
     
     @PostMapping("/experiencia/create")
     public String createExperiencia(@RequestBody Experiencia exp){
