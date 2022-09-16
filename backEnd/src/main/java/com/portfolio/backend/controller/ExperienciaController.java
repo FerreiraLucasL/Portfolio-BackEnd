@@ -25,8 +25,7 @@ public class ExperienciaController {
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Experiencia>> getExperiencia(){
         List<Experiencia> experiencias=iexperienciaServ.getExperiencia();
-        return new ResponseEntity<>(experiencias, HttpStatus.OK);
-    
+        return new ResponseEntity<>(experiencias, HttpStatus.OK);    
     }
     
     
