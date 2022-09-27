@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,27 +34,25 @@ public class PersonaController {
     }       */
     
     //@PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/persona/edit/{id}")
-    public Persona editPersona(@PathVariable Long id,
-                                @RequestParam("nombreApellido") String nuevoNombreApellido,
-                                @RequestParam("cargo") String nuevoCargo,
-                                @RequestParam("lugarNacimiento") String nuevoLugarNac,
-                                @RequestParam("fechaNacimiento") String nuevoFechaNac,
-                                @RequestParam("img")String nuevoImg,
-                                @RequestParam("acerca")String nuevoAcerca){
+      
+    @PutMapping("/persona/edit/{id}")    
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<Persona> editPersona(@PathVariable Long id,
+                                                @RequestParam("nombreApellido") String nuevoNomApe,
+                                                @RequestParam("cargo")String nuevoCargo,
+                                                @RequestParam("lugarNacimiento")String nuevoLugar,
+                                                @RequestParam("fechaNacimiento")String nuevoFechaNac,
+                                                @RequestParam("img")String nuevoImg,
+                                                @RequestParam("banner")String nuevoBanner){
         Persona persona = iPersonaServ.findPersona(id);
         
-        persona.setNombreApellido(nuevoNombreApellido);
+        persona.setNombreApellido(nuevoNomApe);
         persona.setCargo(nuevoCargo);
-        persona.setLugarNacimiento(nuevoLugarNac);
+        persona.setLugarNacimiento(nuevoBanner);
         persona.setFechaNacimiento(nuevoFechaNac);
         persona.setImg(nuevoImg);
+        persona.setBanner(nuevoBanner);
         
-        iPersonaServ.savePersona(persona);
-        return persona;
-        
+        return new ResponseEntity<>(persona,HttpStatus.OK);
     }
-        
-    
-    
 }

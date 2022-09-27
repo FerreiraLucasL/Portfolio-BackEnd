@@ -30,9 +30,9 @@ public class HardSoftSkillController {
     
     
     @PostMapping("/hardsoftskill/create")
-    public String createHardSoftSkill(@RequestBody HardSoftSkill hardSoftSkill){
+    public ResponseEntity<HardSoftSkill> createHardSoftSkill(@RequestBody HardSoftSkill hardSoftSkill){
         ihardSoftSkillServ.saveHardSoftSkill(hardSoftSkill);
-        return "creada con éxito";
+        return new ResponseEntity(HttpStatus.OK);
     }
     
     @DeleteMapping("/hardsoftskill/{id}")
@@ -42,7 +42,7 @@ public class HardSoftSkillController {
     }
     
     @PutMapping("/hardsoftskill/edit/{id}")
-    public HardSoftSkill editHardSoftSkill(@PathVariable Long id,
+    public ResponseEntity<HardSoftSkill> editHardSoftSkill(@PathVariable Long id,
                                            @RequestParam("nombreSkill")String nomSkill,
                                            @RequestParam("valorSkill")Integer valSkill,
                                            @RequestParam("imgSkill")String valImgSkill){
@@ -52,7 +52,7 @@ public class HardSoftSkillController {
         hardSoftSkill.setImgSkill(valImgSkill);
         
         ihardSoftSkillServ.saveHardSoftSkill(hardSoftSkill);
-        return hardSoftSkill;
+        return new ResponseEntity(hardSoftSkill,HttpStatus.OK);
         
     }
     

@@ -30,9 +30,9 @@ public class ExperienciaController {
     
     
     @PostMapping("/experiencia/create")
-    public String createExperiencia(@RequestBody Experiencia exp){
+    public ResponseEntity<Experiencia> createExperiencia(@RequestBody Experiencia exp){
         iexperienciaServ.saveExperiencia(exp);
-        return "creado correctamente";
+        return new ResponseEntity<>(exp, HttpStatus.OK);
     }
     
     @DeleteMapping("/experiencia/delete")
@@ -42,7 +42,7 @@ public class ExperienciaController {
     }
     
     @PutMapping ("/experiencia/edit/{id}")
-    public Experiencia editExperiencia(@PathVariable Long id,
+    public ResponseEntity<Experiencia> editExperiencia(@PathVariable Long id,
                                            @RequestParam("experienciaNombre")String expNom,
                                            @RequestParam("experienciaLugar")String expLug,
                                            @RequestParam("experienciaTiempo")String expTie,
@@ -55,6 +55,6 @@ public class ExperienciaController {
         exp.setExperienciaAnios(expAnios);
         
         iexperienciaServ.saveExperiencia(exp);
-        return exp;
+        return new ResponseEntity(HttpStatus.OK);
     } 
 }

@@ -18,9 +18,7 @@ public class Educacion {
     private String educacionNombre;
     @NotNull
     private String educacionLugar;
-    @NotNull
     private String educacionTiempo;
-    @NotNull
     private String educacionAnios;
     
 }

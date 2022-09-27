@@ -28,9 +28,10 @@ public class EducacionController {
     }
     
     @PostMapping("/educacion/create")
-    public String createEducacion(@RequestBody Educacion edu){
+    @CrossOrigin(origins = "http://localhost:4200")    
+    public ResponseEntity<Educacion> createEducacion(@RequestBody Educacion edu){
         ieducacionServ.saveEducacion(edu);
-        return "creado con exito";
+        return new ResponseEntity(edu, HttpStatus.OK);
     }
     
     @DeleteMapping("/educacion/delete")
@@ -40,7 +41,7 @@ public class EducacionController {
     }
     
     @PutMapping ("/educacion/edit/{id}")
-    public Educacion editEducacion(@PathVariable Long id,
+    public ResponseEntity<Educacion> editEducacion(@PathVariable Long id,
                                            @RequestParam("educacionNombre")String eduNom,
                                            @RequestParam("educacionLugar")String eduLug,
                                            @RequestParam("educacionTiempo")String eduTie,
@@ -50,10 +51,9 @@ public class EducacionController {
         edu.setEducacionNombre(eduNom);
         edu.setEducacionLugar(eduLug);
         edu.setEducacionTiempo(eduTie);
-        edu.setEducacionAnios(eduAnios);
-        
+        edu.setEducacionAnios(eduAnios);        
         ieducacionServ.saveEducacion(edu);
-        return edu;
+        return new ResponseEntity(edu,HttpStatus.OK);
     } 
     
 }
