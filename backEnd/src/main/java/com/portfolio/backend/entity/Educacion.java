@@ -15,8 +15,7 @@ public class Educacion {
     @GeneratedValue (strategy = GenerationType.IDENTITY)   
     private Long Id;
     @NotNull
-    private String educacionNombre;
-    @NotNull
+    private String educacionNombre;    
     private String educacionLugar;
     private String educacionTiempo;
     private String educacionAnios;
