@@ -43,7 +43,8 @@ public class PersonaController {
                                                 @RequestParam("lugarNacimiento")String nuevoLugar,
                                                 @RequestParam("fechaNacimiento")String nuevoFechaNac,
                                                 @RequestParam("img")String nuevoImg,
-                                                @RequestParam("banner")String nuevoBanner){
+                                                @RequestParam("banner")String nuevoBanner,
+                                                @RequestParam("acerca")String nuevoAcerca){
         Persona persona = iPersonaServ.findPersona(id);
         
         persona.setNombreApellido(nuevoNomApe);
@@ -52,6 +53,7 @@ public class PersonaController {
         persona.setFechaNacimiento(nuevoFechaNac);
         persona.setImg(nuevoImg);
         persona.setBanner(nuevoBanner);
+        persona.setAcerca(nuevoAcerca);
         
         return new ResponseEntity<>(persona,HttpStatus.OK);
     }
