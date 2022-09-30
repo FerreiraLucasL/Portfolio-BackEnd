@@ -22,7 +22,7 @@ public class HardSoftSkillController {
     @Autowired IHardSoftSkillServ ihardSoftSkillServ;    
    
     @GetMapping("/hardsoftskill/get")
-    @CrossOrigin(origins = "http://localhost:4200")    
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public ResponseEntity<List<HardSoftSkill>> getHardSoftSkill(){
         List<HardSoftSkill> skills=ihardSoftSkillServ.getHardSoftSkill();
         return new ResponseEntity<>(skills, HttpStatus.OK);    
@@ -30,18 +30,21 @@ public class HardSoftSkillController {
     
     
     @PostMapping("/hardsoftskill/create")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public ResponseEntity<HardSoftSkill> createHardSoftSkill(@RequestBody HardSoftSkill hardSoftSkill){
         ihardSoftSkillServ.saveHardSoftSkill(hardSoftSkill);
         return new ResponseEntity(HttpStatus.OK);
     }
     
     @DeleteMapping("/hardsoftskill/{id}")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public String deleteHardSoftSkill(@PathVariable Long id){
         ihardSoftSkillServ.deleteHardSoftSkill(id);
         return "borrado con éxito";
     }
     
     @PutMapping("/hardsoftskill/edit/{id}")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public ResponseEntity<HardSoftSkill> editHardSoftSkill(@PathVariable Long id,
                                            @RequestParam("nombreSkill")String nomSkill,
                                            @RequestParam("valorSkill")Integer valSkill,

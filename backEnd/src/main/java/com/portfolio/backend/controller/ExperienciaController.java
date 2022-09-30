@@ -22,7 +22,7 @@ public class ExperienciaController {
     @Autowired IExperienciaServ iexperienciaServ;
     
     @GetMapping("/experiencia/get")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public ResponseEntity<List<Experiencia>> getExperiencia(){
         List<Experiencia> experiencias=iexperienciaServ.getExperiencia();
         return new ResponseEntity<>(experiencias, HttpStatus.OK);    
@@ -30,18 +30,21 @@ public class ExperienciaController {
     
     
     @PostMapping("/experiencia/create")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public ResponseEntity<Experiencia> createExperiencia(@RequestBody Experiencia exp){
         iexperienciaServ.saveExperiencia(exp);
         return new ResponseEntity<>(exp, HttpStatus.OK);
     }
     
     @DeleteMapping("/experiencia/delete")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public String deleteExperiencia(@PathVariable Long id){
         iexperienciaServ.deleteExperiencia(id);
         return "borrado correctamente";
     }
     
     @PutMapping ("/experiencia/edit/{id}")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
     public ResponseEntity<Experiencia> editExperiencia(@PathVariable Long id,
                                            @RequestParam("experienciaNombre")String expNom,
                                            @RequestParam("experienciaLugar")String expLug,
