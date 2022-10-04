@@ -19,5 +19,16 @@ public class Educacion {
     private String educacionLugar;
     private String educacionTiempo;
     private String educacionAnios;
+
+    public Educacion() {
+    }
+
+    public Educacion(String educacionNombre, String educacionLugar, String educacionTiempo, String educacionAnios) {
+        this.educacionNombre = educacionNombre;
+        this.educacionLugar = educacionLugar;
+        this.educacionTiempo = educacionTiempo;
+        this.educacionAnios = educacionAnios;
+    }
+    
     
 }

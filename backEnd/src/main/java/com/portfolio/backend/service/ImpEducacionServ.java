@@ -19,8 +19,8 @@ public class ImpEducacionServ implements IEducacionServ{
     }
 
     @Override
-    public void saveEducacion(Educacion exp) {
-        ieducacionRepo.save(exp);
+    public void saveEducacion(Educacion edu) {
+        ieducacionRepo.save(edu);
     }
 
     @Override

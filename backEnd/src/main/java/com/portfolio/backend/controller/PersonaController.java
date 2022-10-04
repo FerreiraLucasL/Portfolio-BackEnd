@@ -19,7 +19,8 @@ public class PersonaController {
     @Autowired IPersonaServ iPersonaServ;
     
     @GetMapping("/persona/get/{id}")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Persona> getPersona (@PathVariable("id")Long id){
         Persona persona = iPersonaServ.findPersona(id);
         return new ResponseEntity<>(persona, HttpStatus.OK);
@@ -36,7 +37,8 @@ public class PersonaController {
     //@PreAuthorize("hasRole('ADMIN')")
       
     @PutMapping("/persona/edit/{id}")    
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/")    
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Persona> editPersona(@PathVariable Long id,
                                                 @RequestParam("nombreApellido") String nuevoNomApe,
                                                 @RequestParam("cargo")String nuevoCargo,

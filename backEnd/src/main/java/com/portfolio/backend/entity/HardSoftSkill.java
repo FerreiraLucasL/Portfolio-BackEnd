@@ -20,5 +20,15 @@ public class HardSoftSkill {
     @NotNull
     private int valorSkill;
     private String imgSkill;
+
+    public HardSoftSkill() {
+    }
+
+    public HardSoftSkill(String nombreSkill, int valorSkill, String imgSkill) {
+        this.nombreSkill = nombreSkill;
+        this.valorSkill = valorSkill;
+        this.imgSkill = imgSkill;
+    }
+ 
     
 }
