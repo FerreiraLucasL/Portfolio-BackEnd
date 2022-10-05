@@ -15,12 +15,20 @@ public class Educacion {
     @GeneratedValue (strategy = GenerationType.IDENTITY)   
     private Long Id;
     @NotNull
-    private String educacionNombre;
-    @NotNull
+    private String educacionNombre;    
     private String educacionLugar;
-    @NotNull
     private String educacionTiempo;
-    @NotNull
-    private String educacionAños;
+    private String educacionAnios;
+
+    public Educacion() {
+    }
+
+    public Educacion(String educacionNombre, String educacionLugar, String educacionTiempo, String educacionAnios) {
+        this.educacionNombre = educacionNombre;
+        this.educacionLugar = educacionLugar;
+        this.educacionTiempo = educacionTiempo;
+        this.educacionAnios = educacionAnios;
+    }
+    
     
 }

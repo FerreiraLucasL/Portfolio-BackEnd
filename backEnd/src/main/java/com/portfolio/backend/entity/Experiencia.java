@@ -22,7 +22,17 @@ public class Experiencia {
     @NotNull
     private String experienciaTiempo;
     @NotNull
-    private String experienciaAños;
+    private String experienciaAnios;
+
+    public Experiencia() {
+    }
+
+    public Experiencia(String experienciaNombre, String experienciaLugar, String experienciaTiempo, String experienciaAnios) {
+        this.experienciaNombre = experienciaNombre;
+        this.experienciaLugar = experienciaLugar;
+        this.experienciaTiempo = experienciaTiempo;
+        this.experienciaAnios = experienciaAnios;
+    }
     
     
     

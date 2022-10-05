@@ -71,6 +71,7 @@ public class AuthController {
     
     
     @PostMapping("/login")
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity(new Mensaje("verifique los datos ingresados"), HttpStatus.BAD_REQUEST);

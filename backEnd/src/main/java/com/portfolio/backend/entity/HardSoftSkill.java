@@ -1,4 +1,3 @@
-
 package com.portfolio.backend.entity;
 
 import javax.persistence.Entity;
@@ -19,9 +18,17 @@ public class HardSoftSkill {
     @NotNull
     private String nombreSkill;
     @NotNull
-    @Size (min=1, max=100, message = "Ingrese valores entre 1 y 100")
-    private Integer valorSkill;
-    
-    
+    private int valorSkill;
+    private String imgSkill;
+
+    public HardSoftSkill() {
+    }
+
+    public HardSoftSkill(String nombreSkill, int valorSkill, String imgSkill) {
+        this.nombreSkill = nombreSkill;
+        this.valorSkill = valorSkill;
+        this.imgSkill = imgSkill;
+    }
+ 
     
 }
