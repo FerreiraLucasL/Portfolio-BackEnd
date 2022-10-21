@@ -14,14 +14,12 @@ import lombok.Setter;
 public class Experiencia {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)   
-    private Long Id;
+    private Long id;
     @NotNull
     private String experienciaNombre;
     @NotNull
     private String experienciaLugar;
-    @NotNull
     private String experienciaTiempo;
-    @NotNull
     private String experienciaAnios;
 
     public Experiencia() {

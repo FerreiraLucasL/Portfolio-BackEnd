@@ -21,43 +21,39 @@ public class EducacionController {
     @Autowired IEducacionServ ieducacionServ;
     
     @GetMapping("/educacion/get")    
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200")    
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200")    
     public ResponseEntity<List<Educacion>> getEducacion(){
         List<Educacion> educaciones=ieducacionServ.getEducacion();
         return new ResponseEntity<>(educaciones, HttpStatus.OK);    
     }
     
     @PostMapping("/educacion/create")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200") 
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Educacion> createEducacion(@RequestBody Educacion edu){
         ieducacionServ.saveEducacion(edu);
         return new ResponseEntity(HttpStatus.OK);
     }
     
-    @DeleteMapping("/educacion/delete")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200") 
-    public String deleteEducacion(@PathVariable Long id){
-        ieducacionServ.deleteEducacion(id);
-        return "borrado con éxito";
+    @DeleteMapping("/educacion/delete/{id}")
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200") 
+    public ResponseEntity<?> deleteEducacion(@PathVariable("id") Long id){
+        ieducacionServ.deleteEducacion(id);  
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PutMapping ("/educacion/edit/{id}")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200") 
-    public ResponseEntity<Educacion> editEducacion(@PathVariable Long id,
-                                           @RequestParam("educacionNombre")String eduNom,
-                                           @RequestParam("educacionLugar")String eduLug,
-                                           @RequestParam("educacionTiempo")String eduTie,
-                                           @RequestParam("educacionAnios")String eduAnios){
-        Educacion edu = ieducacionServ.findEducacion(id);
+    @PutMapping ("/educacion/edit/")
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200") 
+    public ResponseEntity<Educacion> editEducacion(@RequestBody Educacion nuevaEdu){
+        Educacion edu = ieducacionServ.findEducacion(nuevaEdu.getId());
         
-        edu.setEducacionNombre(eduNom);
-        edu.setEducacionLugar(eduLug);
-        edu.setEducacionTiempo(eduTie);
-        edu.setEducacionAnios(eduAnios);        
+        edu.setEducacionNombre(nuevaEdu.getEducacionNombre());
+        edu.setEducacionLugar(nuevaEdu.getEducacionLugar());
+        edu.setEducacionTiempo(nuevaEdu.getEducacionTiempo());
+        edu.setEducacionAnios(nuevaEdu.getEducacionAnios());        
         ieducacionServ.saveEducacion(edu);
         return new ResponseEntity(edu,HttpStatus.OK);
     } 

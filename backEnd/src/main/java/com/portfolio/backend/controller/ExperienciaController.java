@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,8 @@ public class ExperienciaController {
     @Autowired IExperienciaServ iexperienciaServ;
     
     @GetMapping("/experiencia/get")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200") 
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<List<Experiencia>> getExperiencia(){
         List<Experiencia> experiencias=iexperienciaServ.getExperiencia();
         return new ResponseEntity<>(experiencias, HttpStatus.OK);    
@@ -31,37 +32,33 @@ public class ExperienciaController {
     
     
     @PostMapping("/experiencia/create")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200") 
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Experiencia> createExperiencia(@RequestBody Experiencia exp){
+        System.out.print(exp);
         iexperienciaServ.saveExperiencia(exp);
         return new ResponseEntity<>(exp, HttpStatus.OK);
     }
     
-    @DeleteMapping("/experiencia/delete")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200") 
-    public String deleteExperiencia(@PathVariable Long id){
+    @DeleteMapping("/experiencia/delete/{id}")
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200") 
+    public ResponseEntity<?> deleteExperiencia(@PathVariable("id") Long id){
         iexperienciaServ.deleteExperiencia(id);
-        return "borrado correctamente";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PutMapping ("/experiencia/edit/{id}")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    //@CrossOrigin(origins = "http://localhost:4200") 
-    public ResponseEntity<Experiencia> editExperiencia(@PathVariable Long id,
-                                           @RequestParam("experienciaNombre")String expNom,
-                                           @RequestParam("experienciaLugar")String expLug,
-                                           @RequestParam("experienciaTiempo")String expTie,
-                                           @RequestParam("experienciaAnios")String expAnios){
-        Experiencia exp = iexperienciaServ.findExperiencia(id);
+    @PutMapping ("/experiencia/edit/")
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins = "http://localhost:4200") 
+    public ResponseEntity<Experiencia> editExperiencia(@RequestBody Experiencia nuevaExp){
+     Experiencia exp = iexperienciaServ.findExperiencia(nuevaExp.getId());
         
-        exp.setExperienciaNombre(expNom);
-        exp.setExperienciaLugar(expLug);
-        exp.setExperienciaTiempo(expTie);
-        exp.setExperienciaAnios(expAnios);
-        
+        exp.setExperienciaNombre(nuevaExp.getExperienciaNombre());
+        exp.setExperienciaLugar(nuevaExp.getExperienciaLugar());
+        exp.setExperienciaTiempo(nuevaExp.getExperienciaTiempo());
+        exp.setExperienciaAnios(nuevaExp.getExperienciaAnios());        
         iexperienciaServ.saveExperiencia(exp);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(exp,HttpStatus.OK);
     } 
 }

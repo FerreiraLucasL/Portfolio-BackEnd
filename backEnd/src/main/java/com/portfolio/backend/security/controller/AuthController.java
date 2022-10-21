@@ -31,9 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
 public class AuthController {
-
     @Autowired
     PasswordEncoder passwordEncoder;
     @Autowired
@@ -71,7 +69,8 @@ public class AuthController {
     
     
     @PostMapping("/login")
-    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
+    @CrossOrigin(origins ="http://localhost:4200")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity(new Mensaje("verifique los datos ingresados"), HttpStatus.BAD_REQUEST);
@@ -89,7 +88,5 @@ public class AuthController {
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
 
         return new ResponseEntity(jwtDto, HttpStatus.OK);
-
     }
-
 }
