@@ -20,32 +20,32 @@ public class EducacionController {
     @Autowired IEducacionServ ieducacionServ;
     
     @GetMapping("/educacion/get")    
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200")    
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200")    
     public ResponseEntity<List<Educacion>> getEducacion(){
         List<Educacion> educaciones=ieducacionServ.getEducacion();
         return new ResponseEntity<>(educaciones, HttpStatus.OK);    
     }
     
     @PostMapping("/educacion/create")
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200") 
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Educacion> createEducacion(@RequestBody Educacion edu){
         ieducacionServ.saveEducacion(edu);
         return new ResponseEntity(HttpStatus.OK);
     }
     
     @DeleteMapping("/educacion/delete/{id}")
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200") 
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<?> deleteEducacion(@PathVariable("id") Long id){
         ieducacionServ.deleteEducacion(id);  
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
     @PutMapping ("/educacion/edit/")
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200") 
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Educacion> editEducacion(@RequestBody Educacion nuevaEdu){
         Educacion edu = ieducacionServ.findEducacion(nuevaEdu.getId());
         

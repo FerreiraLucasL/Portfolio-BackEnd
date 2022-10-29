@@ -21,8 +21,8 @@ public class ExperienciaController {
     @Autowired IExperienciaServ iexperienciaServ;
     
     @GetMapping("/experiencia/get")
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200") 
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<List<Experiencia>> getExperiencia(){
         List<Experiencia> experiencias=iexperienciaServ.getExperiencia();
         return new ResponseEntity<>(experiencias, HttpStatus.OK);    
@@ -30,24 +30,24 @@ public class ExperienciaController {
     
     
     @PostMapping("/experiencia/create")
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200") 
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Experiencia> createExperiencia(@RequestBody Experiencia exp){
         iexperienciaServ.saveExperiencia(exp);
         return new ResponseEntity<>(exp, HttpStatus.OK);
     }
     
     @DeleteMapping("/experiencia/delete/{id}")
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200") 
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<?> deleteExperiencia(@PathVariable("id") Long id){
         iexperienciaServ.deleteExperiencia(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
     @PutMapping ("/experiencia/edit/")
-    //@CrossOrigin(origins = "https://portfoliolucasferreira.web.app/") 
-    @CrossOrigin(origins = "http://localhost:4200") 
+    @CrossOrigin(origins = "https://portfoliolucasferreira.web.app") 
+    //@CrossOrigin(origins = "http://localhost:4200") 
     public ResponseEntity<Experiencia> editExperiencia(@RequestBody Experiencia nuevaExp){
      Experiencia exp = iexperienciaServ.findExperiencia(nuevaExp.getId());
         
